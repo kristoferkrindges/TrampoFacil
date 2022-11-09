@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 // helpers
 import createUserToken from "../helpers/createUserToken.mjs";
 import getToken from "../helpers/getToken.mjs";
+import getUserByToken from "../helpers/getUserByToken.mjs";
 
 export default class UserController {
 	static async register(req, res) {
@@ -106,6 +107,7 @@ export default class UserController {
 			res.status(422).json({
 				message: "Password invalid!",
 			});
+			return;
 		}
 		await createUserToken(user, req, res);
 	}
@@ -126,5 +128,112 @@ export default class UserController {
 			currentUser = null;
 		}
 		res.status(200).send(currentUser);
+	}
+	// Get user by Id
+	static async getUserbyId(req, res) {
+		const id = req.params.id;
+		//Check if user exists and withdraw password
+		const user = await User.findById(id).select("-password"); // ex password
+		if (!user) {
+			res.status(422).json({
+				message: `User with ${id} not found`,
+			});
+			return;
+		}
+		res.status(200).json({ user });
+	}
+
+	// Protected and edit user
+	static async editUser(req, res) {
+		const id = req.params.id;
+
+		//Check if user exists
+		const token = getToken(req);
+		const user = await getUserByToken(token);
+		// if (!user) {
+		// 	res.status(422).json({
+		// 		message: `User with ${id} not found`,
+		// 	});
+		// 	return;
+		// }
+
+		const { name, email, phone, type, password, confirmpassword } = req.body;
+		let image = "";
+
+		//validations
+		if (!name) {
+			res.status(422).json({ message: "The name is required" });
+			return;
+		}
+
+		if (!email) {
+			res.status(422).json({ message: "The e-mail is required" });
+			return;
+		}
+		// Check if email has already taken
+		const userExists = await User.findOne({ email: email });
+		if (user.email !== email && userExists) {
+			res.status(422).json({ message: "Please use another e-mail" });
+			return;
+		}
+		user.email = email;
+
+		if (!phone) {
+			res.status(422).json({ message: "The phone is required" });
+			return;
+		}
+		user.phone = phone;
+		if (!type) {
+			res.status(422).json({ message: "The type is required" });
+			return;
+		}
+		user.type = type;
+		if (password !== confirmpassword) {
+			res.status(422).json({
+				message: "The password and password confirmation are not the same",
+			});
+			return;
+		} else if (password === confirmpassword && password != null) {
+			// create a password
+			const salt = await bcrypt.genSalt(12);
+			const passwordHash = await bcrypt.hash(password, salt);
+			user.password = passwordHash;
+		}
+		try {
+			// returns user updated data
+			await User.findOneAndUpdate(
+				{ _id: user._id },
+				{ $set: user },
+				{ new: true }
+			);
+			res.status(200).json({
+				message: `User edit with successfully`,
+			});
+		} catch (err) {
+			res.status(500).json({ message: err });
+			return;
+		}
+
+		// res.status(200).json({
+		// 	message: `Edit with sucess`,
+		// });
+		return;
+	}
+	static async deleteUser(req, res) {
+		const id = req.params.id;
+
+		//Check if user exists
+		const token = getToken(req);
+		const user = await getUserByToken(token);
+		try {
+			await user.delete();
+			res.status(200).json({
+				message: `User deleted with successufuly`,
+			});
+		} catch (err) {
+			res.status(500).json({ message: err });
+			return;
+		}
+		return;
 	}
 }
