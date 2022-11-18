@@ -158,7 +158,9 @@ export default class UserController {
 		// }
 
 		const { name, email, phone, type, password, confirmpassword } = req.body;
-		let image = "";
+		if (req.file) {
+			user.image = req.file.filename;
+		}
 
 		//validations
 		if (!name) {

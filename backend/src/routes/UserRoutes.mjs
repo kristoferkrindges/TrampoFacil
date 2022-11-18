@@ -3,6 +3,7 @@ import { Router as expressRouter } from "express";
 
 //Middlewares
 import withAuth from "../helpers/withAuth.mjs";
+import imageUp from "../helpers/imageUpload.mjs";
 
 //Controller
 import UserController from "../controllers/UserController.mjs";
@@ -21,7 +22,12 @@ router.get("/:id", UserController.getUserbyId);
 
 // Routes protected and middlewares
 // Edit user
-router.patch("/edit/:id", withAuth, UserController.editUser);
+router.patch(
+	"/edit/:id",
+	withAuth,
+	imageUp.single("image"),
+	UserController.editUser
+);
 // Remove user
 router.delete("/delete/:id", withAuth, UserController.deleteUser);
 

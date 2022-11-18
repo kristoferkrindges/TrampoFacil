@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 // Public folder for images
-app.use(express.static("./src/public"));
+app.use(express.static("public"));
 
 //Routes
 app.use("/users", UserRoutes);
