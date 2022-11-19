@@ -59,4 +59,29 @@ export default class PostController {
 			res.status(500).json({ message: error });
 		}
 	}
+
+	// List all posts created
+	static async getPosts(req, res) {
+		const getPost = await Post.find({});
+
+		res.status(200).json({
+			message: "All posts created in our platform.",
+			getPost,
+		});
+	}
+
+	// List post by ID
+	static async getPostById(req, res) {
+		const id = req.params.id;
+		const post = await Post.findById(id);
+
+		if (!id) {
+			res.status(422).json({
+				message: `Post with ${id} not found.`,
+			});
+			return;
+		} else {
+			res.status(200).json({ post });
+		}
+	}
 }
