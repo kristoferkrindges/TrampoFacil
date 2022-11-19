@@ -4,6 +4,7 @@ import cors from "cors";
 
 //Routes
 import UserRoutes from "./src/routes/UserRoutes.mjs";
+import PostRoutes from "./src/routes/PostRoutes.mjs";
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use(express.static("public"));
 
 //Routes
 app.use("/users", UserRoutes);
+app.use("/posts", PostRoutes);
 
 app.listen(5000);

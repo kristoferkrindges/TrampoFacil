@@ -19,15 +19,14 @@ const Post = mongoose.model(
 				required: true,
 			},
 			image: {
-				type: Array,
+				type: String,
 			},
 			avaible: {
 				type: Boolean,
 			},
-			author: {
-				type: mongoose.Schema.Types.ObjectId,
-				ref: "User",
-				required: true,
+			author: Object,
+			employees: {
+				type: Array,
 			},
 		},
 		{ timestamps: true }
