@@ -2,6 +2,7 @@ import Post from "../models/Post.mjs";
 //helpers
 import getToken from "../helpers/getToken.mjs";
 import getUserByToken from "../helpers/getUserByToken.mjs";
+import mongoose from "mongoose";
 
 export default class PostController {
 	static async create(req, res) {
@@ -62,19 +63,40 @@ export default class PostController {
 
 	// List all posts created
 	static async getPosts(req, res) {
-		const getPost = await Post.find({});
-
+		// const getPost = await Post.find({});
+		const posts = await Post.find().sort("-createdAt");
 		res.status(200).json({
-			message: "All posts created in our platform.",
-			getPost,
+			posts: posts,
 		});
+
+		// res.status(200).json({
+		// 	message: "All posts created in our platform.",
+		// 	getPost,
+		// });
 	}
 
 	// List post by ID
 	static async getPostById(req, res) {
 		const id = req.params.id;
+		//This
+		const ObjectId = mongoose.Types.ObjectId;
+		if (!ObjectId.isValid(id)) {
+			res.status(422).json({
+				message: `Post with ${id} invalid.`,
+			});
+			return;
+		}
+		// const post = await Post.findOne({_id: id});
+
 		const post = await Post.findById(id);
 
+		if (!post) {
+			res.status(404).json({
+				message: "Post not found.",
+			});
+		}
+		// res.status(200).json({ post : post });
+		//
 		if (!id) {
 			res.status(422).json({
 				message: `Post with ${id} not found.`,
@@ -83,5 +105,12 @@ export default class PostController {
 		} else {
 			res.status(200).json({ post });
 		}
+	}
+
+	static async getAllUserPosts(req, res) {
+		const token = getToken(req);
+		const user = await getUserByToken(token);
+		const posts = await Post.find({ "user._id": user._id }).sort("-createdAt");
+		res.status(200).json({ posts: posts });
 	}
 }

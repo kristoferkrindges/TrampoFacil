@@ -167,6 +167,7 @@ export default class UserController {
 			res.status(422).json({ message: "The name is required" });
 			return;
 		}
+		user.name = name;
 
 		if (!email) {
 			res.status(422).json({ message: "The e-mail is required" });
