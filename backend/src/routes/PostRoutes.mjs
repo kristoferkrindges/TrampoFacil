@@ -15,6 +15,12 @@ router.post("/create", withAuth, PostController.create);
 // Get all posts
 router.get("/list", PostController.getPosts);
 
+// Get all posts
+// router.get("/", PostController.getAll);
+
+// Get Posts user
+router.get("/userposts", withAuth, PostController.getAllUserPosts);
+
 // Get post by Id
 router.get("/:id", PostController.getPostById);
 
