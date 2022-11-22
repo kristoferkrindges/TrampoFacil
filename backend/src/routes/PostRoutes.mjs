@@ -24,4 +24,15 @@ router.get("/userposts", withAuth, PostController.getAllUserPosts);
 // Get post by Id
 router.get("/:id", PostController.getPostById);
 
+//Update
+router.patch(
+	"/:id",
+	withAuth,
+	imageUp.single("image"),
+	PostController.updatePost
+);
+
+//Delete
+router.delete("/:id", withAuth, PostController.removePostById);
+
 export default router;
