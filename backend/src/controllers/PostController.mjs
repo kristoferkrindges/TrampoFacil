@@ -110,8 +110,10 @@ export default class PostController {
 	static async getAllUserPosts(req, res) {
 		const token = getToken(req);
 		const user = await getUserByToken(token);
-		const posts = await Post.find({ "user._id": user._id }).sort("-createdAt");
-		res.status(200).json({ posts: posts });
+		const posts = await Post.find({ "author._id": user._id }).sort(
+			"-createdAt"
+		);
+		res.status(200).json({ posts });
 	}
 
 	// Update Post
