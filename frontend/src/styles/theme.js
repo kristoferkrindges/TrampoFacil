@@ -1,0 +1,26 @@
+export const lightTheme = {
+	bg: "rgb(255,255,255)",
+	bgAlpha: "rgba(250,250,250,.3)",
+	bg2: "rgb(245,245,245)",
+	bg3: "rgb(230,230,230)",
+	text: "black",
+	primary: "rgb(52, 131, 235)",
+	navbar: "#113447",
+	background: "whitesmoke",
+	title: "#fc4c35",
+	buttons: "#00A3FF",
+	buttons_hover: "rgba(37, 108, 225, 0.7)",
+};
+export const darkTheme = {
+	bg: "black",
+	bgAlpha: "rgba(0,0,0,.3)",
+	bg2: "rgb(30,30,30)",
+	bg3: "rgb(50,50,50)",
+	text: "white",
+	title: "#fc4c35",
+	primary: "rgb(52, 131, 235)",
+	navbar: "#113447",
+	background: "#242323",
+	buttons: "#00A3FF",
+	buttons_hover: "rgba(37, 108, 225, 0.7)",
+};
