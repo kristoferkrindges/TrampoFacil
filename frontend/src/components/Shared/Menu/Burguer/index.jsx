@@ -24,7 +24,7 @@ export default function Burguer({ isOpen, toggle }) {
 					<SidebarLink to="/" onClick={toggle}>
 						Home
 					</SidebarLink>
-					<SidebarLink to="/publication" onClick={toggle}>
+					<SidebarLink to="/" onClick={toggle}>
 						Publicar
 					</SidebarLink>
 					<SidebarLink to="/login" onClick={toggle}>

@@ -61,7 +61,7 @@ export const SidebarLink = styled(LinkR)`
 	list-style: none;
 	transition: 0.2s ease-in-out;
 	text-decoration: none;
-	color: ${({ theme }) => theme.title};
+	color: ${({ theme }) => theme.text};
 	cursor: pointer;
 
 	&:hover {

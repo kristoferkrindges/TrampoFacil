@@ -1,7 +1,12 @@
 import React from "react";
-// import { Layout } from "./styles";
 import Menu from "../Shared/Menu";
+import Main from "./Main";
 
 export default function Home() {
-	return <Menu type="não" search="home" />;
+	return (
+		<>
+			<Menu type="não" search="home" />
+			<Main />
+		</>
+	);
 }
