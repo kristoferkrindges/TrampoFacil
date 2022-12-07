@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styles/theme";
 import Routes from "./routes";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 export const ThemeContext = React.createContext(null);
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 			<ThemeProvider theme={themeStyle}>
 				<GlobalStyle />
 				<Routes></Routes>
+				<ToastContainer></ToastContainer>
 			</ThemeProvider>
 		</ThemeContext.Provider>
 	);
