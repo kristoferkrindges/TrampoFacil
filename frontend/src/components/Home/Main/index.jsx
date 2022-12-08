@@ -15,6 +15,7 @@ import {
 	IoCop,
 } from "./style";
 import logo from "../../../assets/images/imagem.png";
+import image from "../../../assets/images/Customer relationship management-rafiki.svg";
 
 export default function Main() {
 	return (
@@ -33,7 +34,7 @@ export default function Main() {
 				</MainText>
 				<MainImg>
 					<Image>
-						<img src={logo} alt="trampofacil"></img>
+						<img src={image} alt="trampofacil"></img>
 						{/* <IoCop /> */}
 					</Image>
 					<RightBG />

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
 import {
 	Container,
 	LeftRegister,
@@ -14,6 +15,7 @@ import {
 	RegisterButton,
 	Select,
 	Option,
+	ForgotPassword,
 } from "./style";
 import Image from "../../../../assets/images/Queue-rafiki.svg";
 import { Context } from "../../../../context/UserContext";
@@ -128,6 +130,9 @@ export default function Register() {
 						>
 							Cadastrar
 						</RegisterButton>
+						<Link to={"/login"}>
+							<ForgotPassword>Já tem conta?</ForgotPassword>
+						</Link>
 					</CardRegister>
 				</RightRegister>
 			</SubmitRegister>

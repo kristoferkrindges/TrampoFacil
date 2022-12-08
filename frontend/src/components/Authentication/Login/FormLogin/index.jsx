@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 import {
@@ -21,7 +21,10 @@ import {
 import Image from "../../../../assets/images/register.svg";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { Context } from "../../../../context/UserContext";
 function FormLogin() {
+	const { login } = useContext(Context);
+
 	const [password, setPassword] = useState();
 	const [email, setEmail] = useState();
 	const [redirectToDash, setRedirectToDash] = useState(false);
@@ -29,12 +32,11 @@ function FormLogin() {
 
 	function handlerButton(evt) {
 		evt.preventDefault();
-		if (password == "1234") {
-			setRoute("/dashboard");
-			setRedirectToDash(true);
-		} else {
-			toast.error("Senha incorreta");
-		}
+		const user = {
+			email: email,
+			password: password,
+		};
+		login(user);
 	}
 	if (redirectToDash == true) return <Navigate to={{ pathname: route }} />;
 	return (
