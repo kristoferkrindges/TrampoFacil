@@ -169,3 +169,8 @@ export const Select = styled.select`
 	}
 `;
 export const Option = styled.option``;
+
+export const ForgotPassword = styled.p`
+	cursor: pointer;
+	color: ${({ theme }) => theme.text};
+`;

@@ -1,13 +1,52 @@
 import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 import { Link as LinkS } from "react-scroll";
-import { IoContrastOutline, IoContrastSharp } from "react-icons/io5";
+import {
+	IoContrastOutline,
+	IoContrastSharp,
+	IoExtensionPuzzleOutline,
+	IoIdCardOutline,
+	IoAlbums,
+	IoLogOutOutline,
+} from "react-icons/io5";
+
+export const IoIdCard = styled(IoIdCardOutline)`
+	width: 20px;
+	height: 20px;
+	&:hover {
+		opacity: 0.5;
+	}
+`;
+
+export const IoLogOut = styled(IoLogOutOutline)`
+	width: 20px;
+	height: 20px;
+	&:hover {
+		opacity: 0.5;
+	}
+`;
 
 export const IoCart = styled(IoContrastOutline)`
 	width: 20px;
 	height: 20px;
 	margin-left: 40px;
 	margin-right: 20px;
+`;
+
+export const IoCart2 = styled(IoContrastOutline)`
+	width: 20px;
+	height: 20px;
+	&:hover {
+		opacity: 0.5;
+	}
+`;
+
+export const IoAlbum = styled(IoAlbums)`
+	width: 20px;
+	height: 20px;
+	&:hover {
+		opacity: 0.5;
+	}
 `;
 
 export const Nav = styled.nav`
@@ -155,5 +194,74 @@ export const NavBtnLink = styled(LinkR)`
 		background: black;
 		color: white;
 		font-size: 20px;
+	}
+`;
+
+export const IoExtensionPuzzle = styled(IoExtensionPuzzleOutline)`
+	width: 20px;
+	height: 20px;
+	&:hover {
+		opacity: 0.5;
+	}
+`;
+
+// Menu bolinha
+export const Profile = styled.div`
+	position: relative;
+	margin-right: 85%;
+	img {
+		width: 45px;
+		height: 45px;
+		border-radius: 50%;
+		object-fit: cover;
+		cursor: pointer;
+		margin-top: 15%;
+		margin-right: 35%;
+		/* margin-left: 5%; */
+	}
+`;
+
+export const ProfileLink = styled.ul`
+	position: absolute;
+	top: calc(100% + 10px);
+	right: 0;
+	background: ${({ theme }) => theme.navbar};
+	padding: 10px 0;
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	width: 160px;
+	opacity: 1;
+	/* pointer-events: none; */
+	transition: all 0.3s ease;
+`;
+
+export const Li = styled.li`
+	& a {
+		padding: 10px 16px;
+		display: flex;
+		grid-gap: 10px;
+		font-size: 14px;
+		color: white;
+		align-items: center;
+		transition: all 0.3s ease;
+		cursor: pointer;
+	}
+	& a:hover {
+		background: ${({ theme }) => theme.buttons};
+	}
+`;
+
+export const Alink = styled.a`
+	padding: 10px 16px;
+	display: flex;
+	grid-gap: 10px;
+	font-size: 14px;
+	color: white;
+	align-items: center;
+	transition: all 0.3s ease;
+	cursor: pointer;
+
+	&:hover {
+		background: ${({ theme }) => theme.buttons};
 	}
 `;

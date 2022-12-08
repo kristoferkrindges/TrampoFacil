@@ -175,7 +175,7 @@ export const MainImg = styled.div`
 `;
 
 export const Image = styled.div`
-	width: 68rem;
+	width: 50rem;
 	position: absolute;
 	bottom: 1rem;
 	right: -19rem;
@@ -199,6 +199,31 @@ export const Image = styled.div`
 	}
 `;
 
+// export const Image = styled.div`
+// 	width: 68rem;
+// 	position: absolute;
+// 	bottom: 1rem;
+// 	right: -19rem;
+// 	z-index: 1;
+
+// 	& img {
+// 		width: 100%;
+// 		object-fit: cover;
+// 	}
+// 	@media only screen and (max-width: 1024px) {
+// 		bottom: 1.5rem;
+// 		width: 48rem;
+// 		right: -6rem;
+// 	}
+
+// 	@media only screen and (max-width: 600px) {
+// 		/* position: relative; */
+// 		top: -8rem;
+// 		width: 35rem;
+// 		right: -2.5rem;
+// 	}
+// `;
+
 export const RightBG = styled.div`
 	width: 70rem;
 	height: 70rem;
@@ -206,7 +231,7 @@ export const RightBG = styled.div`
 	background: ${({ theme }) => theme.buttons};
 	position: absolute;
 	right: -40rem;
-	bottom: -22rem;
+	bottom: -19rem;
 
 	@media only screen and (max-width: 1024px) {
 		width: 38rem;
