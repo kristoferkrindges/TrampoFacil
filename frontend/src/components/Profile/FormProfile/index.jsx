@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import {
 	Container,
-	Context,
+	Context2,
 	Top,
 	Bottom,
 	Layout,
@@ -35,15 +35,15 @@ import {
 	IoPricetag,
 } from "./style";
 import { Navigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Context } from "../../../context/UserContext";
 
 function FormProfile(props) {
-	// const { infoUser } = useContext(Context);
+	//Contexto
+	const { userContext, UpdateUser, DeleteUser } = useContext(Context);
 	//Others
 	//Modal
 	const [modal, setModal] = useState(false);
-	// console.log(infoUser());
 	// Redirect
 	const [redirectToDash, setRedirectToDash] = useState(false);
 	const [route, setRoute] = useState("");
@@ -58,6 +58,7 @@ function FormProfile(props) {
 			setOpen(false);
 		}
 	}
+	const [id, setId] = useState();
 	const [name, setName] = useState();
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
@@ -65,6 +66,25 @@ function FormProfile(props) {
 	const [phone, setPhone] = useState();
 	const [type, setType] = useState();
 	const [image, setImage] = useState();
+
+	useEffect(() => {
+		config();
+	}, [userContext]);
+
+	function config() {
+		if (userContext) {
+			setId(userContext._id);
+			setName(userContext.name);
+			setEmail(userContext.email);
+			setPhone(userContext.phone);
+			if (userContext.type == true) {
+				setType("Empresa");
+			} else {
+				setType("Cliente");
+			}
+			setImage(userContext.image);
+		}
+	}
 
 	function handleSubmitUser(evt) {
 		evt.preventDefault();
@@ -77,14 +97,17 @@ function FormProfile(props) {
 			confirmpassword: confirmPassword,
 			image: image,
 		};
-		console.log(user);
+		UpdateUser(user, id);
+	}
+	function handleDelete() {
+		props.modal(true);
 	}
 
 	// Produtc final
 	if (redirectToDash == true) return <Navigate to={{ pathname: route }} />;
 	return (
 		<Container>
-			<Context>
+			<Context2>
 				<Layout style={!open ? { background: "none" } : {}}>
 					<Top>
 						<CardContent>
@@ -126,7 +149,11 @@ function FormProfile(props) {
 								<></>
 							)}
 							<Social>
-								<IoPerson2 />
+								<IoPerson2
+									onClick={() => {
+										handleDelete();
+									}}
+								/>
 							</Social>
 							<NameSubject>
 								<Name style={open ? { display: "none" } : {}}>
@@ -217,6 +244,7 @@ function FormProfile(props) {
 										<InputName
 											type="text"
 											placeholder=""
+											disabled
 											value={type}
 											onChange={(e) => {
 												setType(e.target.value);
@@ -247,9 +275,9 @@ function FormProfile(props) {
 						</UserDetails>
 						<Buttons onClick={HandlerOpen} style={open ? {} : {}}>
 							<HireMe
-								onClick={() => {
+								onClick={(evt) => {
 									HandlerOpen();
-									handleSubmitUser();
+									handleSubmitUser(evt);
 								}}
 							>
 								Pronto
@@ -257,7 +285,7 @@ function FormProfile(props) {
 						</Buttons>
 					</Bottom>
 				</Layout>
-			</Context>
+			</Context2>
 		</Container>
 	);
 }

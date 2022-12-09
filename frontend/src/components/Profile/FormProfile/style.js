@@ -13,6 +13,7 @@ import {
 	IoCartOutline,
 	IoPhonePortraitSharp,
 	IoPricetags,
+	IoTrashBinOutline,
 } from "react-icons/io5";
 
 export const IoPricetag = styled(IoPricetags)`
@@ -105,10 +106,10 @@ export const IoMail = styled(IoMailOutline)`
 	}
 `;
 
-export const IoPerson2 = styled(IoPersonOutline)`
+export const IoPerson2 = styled(IoTrashBinOutline)`
 	width: 40px;
 	height: 40px;
-	stroke: ${({ theme }) => theme.text};
+	stroke: black;
 	cursor: pointer;
 	&:hover {
 		opacity: 0.5;
@@ -169,7 +170,7 @@ export const Container = styled.div`
 	height: 100vh;
 `;
 
-export const Context = styled.div`
+export const Context2 = styled.div`
 	/* display: flex;
 	justify-content: center;
 	align-items: center; */
@@ -183,8 +184,8 @@ export const Layout = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 80vh;
-	margin-top: 5%;
+	height: 100vh;
+	/* margin-top: 5%; */
 	border-radius: 25px;
 `;
 
@@ -341,7 +342,7 @@ export const Bottom = styled.div`
 	background-color: ${({ theme }) => theme.bg};
 	padding: 25px 30px;
 	border-radius: 25px;
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
 	/* height: 50vh; */
 	/* bottom: -100%;
 	transition: 850ms; */

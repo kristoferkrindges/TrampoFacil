@@ -27,7 +27,7 @@ import { Context } from "../../../../context/UserContext";
 
 export default function Navbar({ toggle, resp, type }) {
 	const { setTheme, theme } = useContext(ThemeContext);
-	const { authenticated, logout } = useContext(Context);
+	const { authenticated, logout, userContext } = useContext(Context);
 
 	const [hero, setHero] = useState(false);
 	function HandlerOpen() {
@@ -56,13 +56,31 @@ export default function Navbar({ toggle, resp, type }) {
 						<NavBtn>
 							<Profile>
 								{authenticated ? (
-									<img
-										onClick={HandlerOpen}
-										src={
-											"http://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
-										}
-										alt=""
-									/>
+									userContext ? (
+										userContext.image ? (
+											<img
+												onClick={HandlerOpen}
+												src={userContext.image}
+												alt=""
+											/>
+										) : (
+											<img
+												onClick={HandlerOpen}
+												src={
+													"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+												}
+												alt=""
+											/>
+										)
+									) : (
+										<img
+											onClick={HandlerOpen}
+											src={
+												"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+											}
+											alt=""
+										/>
+									)
 								) : (
 									<img
 										onClick={HandlerOpen}
@@ -130,15 +148,94 @@ export default function Navbar({ toggle, resp, type }) {
 							<NavLink to={"/layout"}>Vagas</NavLink>
 							<NavLink>Sobre</NavLink>
 						</NavMenu>
-						<NavBtn>
-							<NavBtnLink to="/login">{resp}</NavBtnLink>
-							<IoCart
-								isActive={theme === "dark"}
-								onClick={() =>
-									setTheme((p) => (p === "light" ? "dark" : "light"))
-								}
-							/>
-						</NavBtn>
+						{authenticated ? (
+							<NavBtn>
+								<Profile>
+									{authenticated ? (
+										userContext ? (
+											userContext.image ? (
+												<img
+													onClick={HandlerOpen}
+													src={userContext.image}
+													alt=""
+												/>
+											) : (
+												<img
+													onClick={HandlerOpen}
+													src={
+														"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+													}
+													alt=""
+												/>
+											)
+										) : (
+											<img
+												onClick={HandlerOpen}
+												src={
+													"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+												}
+												alt=""
+											/>
+										)
+									) : (
+										<img
+											onClick={HandlerOpen}
+											src={
+												"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+											}
+											alt=""
+										/>
+									)}
+
+									<ProfileLink
+										style={hero ? { display: "block" } : { display: "none" }}
+									>
+										<Li>
+											<Link to="/profile">
+												<IoIdCard></IoIdCard> Perfil
+											</Link>
+										</Li>
+										<Li>
+											<Link to="/publication">
+												<IoExtensionPuzzle></IoExtensionPuzzle> Publicar
+											</Link>
+										</Li>
+										<Li>
+											<Link to="/listshop">
+												<IoAlbum /> Postagens
+											</Link>
+										</Li>
+										<Li>
+											<Alink
+												isActive={theme === "dark"}
+												onClick={() =>
+													setTheme((p) => (p === "light" ? "dark" : "light"))
+												}
+											>
+												<IoCart2 />
+												DarkMode
+											</Alink>
+										</Li>
+										<Li onClick={authenticated ? logout : ""}>
+											<Link to={authenticated ? "/" : "/login"}>
+												<IoLogOut></IoLogOut>{" "}
+												{authenticated ? "Sair" : "Entrar"}
+											</Link>
+										</Li>
+									</ProfileLink>
+								</Profile>
+							</NavBtn>
+						) : (
+							<NavBtn>
+								<NavBtnLink to="/login">{resp}</NavBtnLink>
+								<IoCart
+									isActive={theme === "dark"}
+									onClick={() =>
+										setTheme((p) => (p === "light" ? "dark" : "light"))
+									}
+								/>
+							</NavBtn>
+						)}
 					</NavbarContainer>
 				</Nav>
 			</>
