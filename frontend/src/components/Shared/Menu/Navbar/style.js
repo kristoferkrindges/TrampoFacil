@@ -8,9 +8,19 @@ import {
 	IoIdCardOutline,
 	IoAlbums,
 	IoLogOutOutline,
+	IoAnalyticsOutline,
+	IoBriefcase,
 } from "react-icons/io5";
 
 export const IoIdCard = styled(IoIdCardOutline)`
+	width: 20px;
+	height: 20px;
+	&:hover {
+		opacity: 0.5;
+	}
+`;
+
+export const IoBrief = styled(IoBriefcase)`
 	width: 20px;
 	height: 20px;
 	&:hover {

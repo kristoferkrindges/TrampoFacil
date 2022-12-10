@@ -12,10 +12,16 @@ import LoginScreen from "./Pages/login";
 import RegisterScreen from "./Pages/register";
 import LayoutScreen from "./Pages/layout";
 import ProfileScreen from "./Pages/profile";
-import { PrivateRouter, PrivateLogin } from "./context/PrivateRouter";
+import MyPostsScreen from "./Pages/myposts";
+import {
+	PrivateRouter,
+	PrivateLogin,
+	PrivatePost,
+} from "./context/PrivateRouter";
 
 // ContextUser
 import { UserProvider } from "./context/UserContext";
+import CreatedPostScreen from "./Pages/createdPost";
 
 export default function Routess() {
 	return (
@@ -31,6 +37,12 @@ export default function Routess() {
 					<Route path="/layout" element={<LayoutScreen />} />
 					<Route path="/profile" element={<PrivateRouter />}>
 						<Route path="/profile" element={<ProfileScreen />}></Route>
+					</Route>
+					<Route path="/myposts" element={<PrivatePost />}>
+						<Route path="/myposts" element={<MyPostsScreen />}></Route>
+					</Route>
+					<Route path="/createdpost" element={<PrivatePost />}>
+						<Route path="/createdpost" element={<CreatedPostScreen />}></Route>
 					</Route>
 					{/* <Route path="/profile" element={<ProfileScreen />} /> */}
 				</Routes>
