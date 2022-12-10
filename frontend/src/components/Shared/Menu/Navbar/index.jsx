@@ -18,6 +18,7 @@ import {
 	IoAlbum,
 	IoCart2,
 	Alink,
+	IoBrief,
 } from "./style";
 import { FaBars } from "react-icons/fa";
 import { ThemeContext } from "../../../../App";
@@ -99,16 +100,32 @@ export default function Navbar({ toggle, resp, type }) {
 											<IoIdCard></IoIdCard> Perfil
 										</Link>
 									</Li>
-									<Li>
-										<Link to="/publication">
-											<IoExtensionPuzzle></IoExtensionPuzzle> Publicar
-										</Link>
-									</Li>
-									<Li>
-										<Link to="/listshop">
-											<IoAlbum /> Postagens
-										</Link>
-									</Li>
+									{/* {userContext ? userContext.type == true ? ( : (<></>) : } */}
+									{userContext ? (
+										userContext.type == true ? (
+											<>
+												<Li>
+													<Link to="/createdpost">
+														<IoExtensionPuzzle></IoExtensionPuzzle> Publicar
+													</Link>
+												</Li>
+												<Li>
+													<Link to="/myposts">
+														<IoAlbum /> Postagens
+													</Link>
+												</Li>
+											</>
+										) : (
+											<Li>
+												<Link to="/layout">
+													<IoBrief></IoBrief> Vagas
+												</Link>
+											</Li>
+										)
+									) : (
+										<></>
+									)}
+
 									<Li>
 										<Alink
 											isActive={theme === "dark"}
@@ -195,16 +212,30 @@ export default function Navbar({ toggle, resp, type }) {
 												<IoIdCard></IoIdCard> Perfil
 											</Link>
 										</Li>
-										<Li>
-											<Link to="/publication">
-												<IoExtensionPuzzle></IoExtensionPuzzle> Publicar
-											</Link>
-										</Li>
-										<Li>
-											<Link to="/listshop">
-												<IoAlbum /> Postagens
-											</Link>
-										</Li>
+										{userContext ? (
+											userContext.type == true ? (
+												<>
+													<Li>
+														<Link to="/createdpost">
+															<IoExtensionPuzzle></IoExtensionPuzzle> Publicar
+														</Link>
+													</Li>
+													<Li>
+														<Link to="/myposts">
+															<IoAlbum /> Postagens
+														</Link>
+													</Li>
+												</>
+											) : (
+												<Li>
+													<Link to="/layout">
+														<IoBrief></IoBrief> Vagas
+													</Link>
+												</Li>
+											)
+										) : (
+											<></>
+										)}
 										<Li>
 											<Alink
 												isActive={theme === "dark"}

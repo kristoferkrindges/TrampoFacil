@@ -92,7 +92,7 @@ function FormProfile(props) {
 			name: name,
 			email: email,
 			phone: phone,
-			type: type,
+			type: userContext.type,
 			password: password,
 			confirmpassword: confirmPassword,
 			image: image,
