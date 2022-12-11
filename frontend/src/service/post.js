@@ -5,13 +5,16 @@ const token = localStorage.getItem("token");
 const PostService = {
 	getAll: () => Api.get("/posts/list"),
 	getId: (id) => Api.get(`/posts/${id}`),
-	getAllUserPosts: () => Api.get("/posts/userposts"),
+	getAllUserPosts: () =>
+		Api.get("/posts/userposts", {
+			Authorization: `Bearer ${JSON.parse(token)}`,
+		}),
 	created: (params) =>
 		Api.post("/posts/create", params, {
 			Authorization: `Bearer ${JSON.parse(token)}`,
 		}),
 	update: (id, params) =>
-		Api.put(`/posts/${id}`, params, {
+		Api.patch(`/posts/${id}`, params, {
 			Authorization: `Bearer ${JSON.parse(token)}`,
 		}),
 	delete: (id) =>

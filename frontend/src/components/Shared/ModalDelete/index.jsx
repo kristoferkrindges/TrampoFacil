@@ -13,17 +13,15 @@ import {
 	Image,
 	Buttoned,
 } from "./style";
-import { Context } from "../../../context/UserContext";
 
 export default function ModalDelete(props) {
-	const { DeleteUser, userContext } = useContext(Context);
 	const handleNot = () => {
 		props.modal(false);
 	};
 
 	const handleYes = () => {
 		console.log("yes");
-		DeleteUser(userContext._id);
+		props.yes();
 	};
 
 	return (
