@@ -11,8 +11,11 @@ const app = express();
 //Config JSON response
 app.use(express.json());
 
+// app.use(express.urlencoded({ extended: false }));
+
 // Solve CORS
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+// app.use(cors());
 
 // Public folder for images
 app.use(express.static("public"));

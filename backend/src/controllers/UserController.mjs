@@ -121,13 +121,19 @@ export default class UserController {
 			// variable ambit
 			const secret = process.env.JWT_TOKEN;
 			const decoded = jwt.verify(token, secret);
-			currentUser = await User.findById(decoded.id);
-
-			currentUser.password = undefined;
+			//currentUser = await User.findById(decoded.id);
+			currentUser = await User.findById(decoded.id).select("-password");
+			// if (currentUser) {
+			// 	currentUser.password = undefined;
+			// }
+			//currentUser.password = undefined;
+			//return
 		} else {
 			currentUser = null;
+			//return
 		}
 		res.status(200).send(currentUser);
+		//return
 	}
 	// Get user by Id
 	static async getUserbyId(req, res) {
@@ -157,7 +163,8 @@ export default class UserController {
 		// 	return;
 		// }
 
-		const { name, email, phone, type, password, confirmpassword } = req.body;
+		const { name, email, phone, type, password, confirmpassword, image } =
+			req.body;
 		if (req.file) {
 			user.image = req.file.filename;
 		}
@@ -202,6 +209,7 @@ export default class UserController {
 			const passwordHash = await bcrypt.hash(password, salt);
 			user.password = passwordHash;
 		}
+		user.image = image;
 		try {
 			// returns user updated data
 			await User.findOneAndUpdate(
