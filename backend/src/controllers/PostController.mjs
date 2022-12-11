@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 
 export default class PostController {
 	static async create(req, res) {
-		const { name, wage, details } = req.body;
+		const { name, wage, details, image } = req.body;
 		const avaible = true;
 
 		//Image
@@ -35,17 +35,28 @@ export default class PostController {
 			return;
 		}
 		// create
+		// const post = new Post({
+		// 	name,
+		// 	wage,
+		// 	details,
+		// 	avaible,
+		// 	author: {
+		// 		_id: user._id,
+		// 		name: user.name,
+		// 		image: user.image,
+		// 		email: user.email,
+		// 		phone: user.phone,
+		// 	},
+		// 	employees: [],
+		// });
 		const post = new Post({
 			name,
 			wage,
 			details,
 			avaible,
+			image,
 			author: {
 				_id: user._id,
-				name: user.name,
-				image: user.image,
-				email: user.email,
-				phone: user.phone,
 			},
 			employees: [],
 		});
@@ -120,9 +131,9 @@ export default class PostController {
 	static async updatePost(req, res) {
 		const id = req.params.id;
 
-		const { name, wage, details, avaible } = req.body;
+		const { name, wage, details, avaible, image } = req.body;
 
-		const images = req.files;
+		//const images = req.files;
 
 		const updateData = {};
 		const ObjectId = mongoose.Types.ObjectId;
@@ -168,8 +179,14 @@ export default class PostController {
 		} else {
 			updateData.details = details;
 		}
+		if (!avaible) {
+			res.status(422).json({ message: "The avaible is required" });
+			return;
+		} else {
+			updateData.avaible = avaible;
+		}
 		//image...
-
+		updateData.image = image;
 		await Post.findByIdAndUpdate(id, updateData);
 		res.status(200).json({ message: "Post updated with successful" });
 	}
