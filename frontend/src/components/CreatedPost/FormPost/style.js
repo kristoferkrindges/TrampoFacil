@@ -1,7 +1,17 @@
 import styled from "styled-components";
-import { IoCameraOutline, IoExtensionPuzzleOutline } from "react-icons/io5";
+import {
+	IoCameraOutline,
+	IoExtensionPuzzleOutline,
+	IoBrushOutline,
+} from "react-icons/io5";
 
 export const IconImageProduct = styled(IoExtensionPuzzleOutline)`
+	width: 31rem;
+	height: 31rem;
+	stroke: black;
+`;
+
+export const IoBrush = styled(IoBrushOutline)`
 	width: 31rem;
 	height: 31rem;
 	stroke: black;
@@ -14,7 +24,9 @@ export const Select = styled.select`
 	border-radius: 10px;
 	box-shadow: 1px 1px 6px #0000001c;
 	font-size: 0.8rem;
-	min-width: 26.8ch;
+	min-width: 28.8ch;
+	outline: 1px solid ${({ theme }) => theme.text};
+
 	&:hover {
 		background-color: #eeeeee75;
 	}

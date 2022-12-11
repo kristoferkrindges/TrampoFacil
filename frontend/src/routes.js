@@ -22,6 +22,7 @@ import {
 // ContextUser
 import { UserProvider } from "./context/UserContext";
 import CreatedPostScreen from "./Pages/createdPost";
+import UpdatePostScreen from "./Pages/updatePost";
 
 export default function Routess() {
 	return (
@@ -43,6 +44,12 @@ export default function Routess() {
 					</Route>
 					<Route path="/createdpost" element={<PrivatePost />}>
 						<Route path="/createdpost" element={<CreatedPostScreen />}></Route>
+					</Route>
+					<Route path="/updatepost/:id" element={<PrivatePost />}>
+						<Route
+							path="/updatepost/:id"
+							element={<UpdatePostScreen />}
+						></Route>
 					</Route>
 					{/* <Route path="/profile" element={<ProfileScreen />} /> */}
 				</Routes>
