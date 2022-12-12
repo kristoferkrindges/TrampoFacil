@@ -17,6 +17,10 @@ const PostService = {
 		Api.patch(`/posts/${id}`, params, {
 			Authorization: `Bearer ${JSON.parse(token)}`,
 		}),
+	signUp: (id, params) =>
+		Api.patch(`/posts/signup/${id}`, params, {
+			Authorization: `Bearer ${JSON.parse(token)}`,
+		}),
 	delete: (id) =>
 		Api.delete(`/posts/${id}`, {
 			Authorization: `Bearer ${JSON.parse(token)}`,

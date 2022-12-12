@@ -1,6 +1,6 @@
 import Api from "./api";
 
 const UserService = {
-	add: (params) => Api.post("/users/register", params),
+	getId: (id) => Api.get(`/users/${id}`),
 };
 export default UserService;

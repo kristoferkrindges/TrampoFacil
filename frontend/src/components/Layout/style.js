@@ -6,7 +6,7 @@ export const Layout = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100vw;
+	width: 100%;
 `;
 
 export const Content = styled.section`
@@ -55,4 +55,9 @@ export const Cont = styled.div`
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+`;
+
+export const Option = styled.main`
+	width: 90%;
+	padding: 24px 20px 20px 20px;
 `;

@@ -72,6 +72,38 @@ export default class PostController {
 		}
 	}
 
+	static async SignUp(req, res) {
+		const id = req.params.id;
+		const { user } = req.body;
+		const ObjectId = mongoose.Types.ObjectId;
+		if (!ObjectId.isValid(id)) {
+			res.status(422).json({
+				message: `User with ${id} invalid.`,
+			});
+			return;
+		}
+		if (!user) {
+			res.status(422).json({ message: "The user is required" });
+			return;
+		}
+		try {
+			const post = await Post.findById(id);
+			if (post.employees.includes(user)) {
+				res.status(422).json({ message: "User already registered" });
+				return;
+			}
+			post.employees.push(user);
+			await Post.findByIdAndUpdate(id, post);
+			// console.log(user);
+			res.status(201).json({
+				message: "The user was push with successfully!",
+			});
+			return;
+		} catch (error) {
+			res.status(500).json({ message: error });
+		}
+	}
+
 	// List all posts created
 	static async getPosts(req, res) {
 		// const getPost = await Post.find({});

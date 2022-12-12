@@ -621,7 +621,7 @@ export const Input = styled.input`
 `;
 
 export const Exit = styled.a`
-	width: 30%;
+	width: 26%;
 	border-radius: 50px;
 	background: ${({ theme }) => theme.text};
 	white-space: nowrap;
