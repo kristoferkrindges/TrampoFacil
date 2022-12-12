@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import Carrousel from "react-elastic-carousel";
 import SearchBar from "../Shared/SearchBar";
-import Post from "../Shared/PostTest";
+import Post from "../Shared/Post";
 import PostService from "../../service/post";
 import ModalDelete from "../Shared/ModalDelete";
 import { Context } from "../../context/UserContext";
@@ -74,7 +74,7 @@ export default function MyPosts() {
 						</BtnContent>
 						<Cont>
 							<SearchBar
-								placeholder="Procure por clientes"
+								placeholder="Procure por postagens"
 								data={posts}
 								updateResult={updateResult}
 							/>
@@ -105,6 +105,8 @@ export default function MyPosts() {
 											getId={handleId}
 											userName={userContext.name}
 											userImage={userContext.image}
+											type={true}
+											employees={value.employees}
 										/>
 									))}
 							{posts.length === 0 && <p>Não há Postagens cadastradas ainda!</p>}

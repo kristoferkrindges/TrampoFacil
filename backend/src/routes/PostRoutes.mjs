@@ -24,6 +24,9 @@ router.get("/userposts", withAuth, PostController.getAllUserPosts);
 // Get post by Id
 router.get("/:id", PostController.getPostById);
 
+// SignUp User
+router.patch("/signup/:id", withAuth, PostController.SignUp);
+
 //Update
 router.patch(
 	"/:id",
