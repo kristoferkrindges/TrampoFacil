@@ -1,8 +1,8 @@
 import React from "react";
-import Layout from "../components/Layout";
+import Jobs from "../components/Layout";
 
 function LayoutScreen() {
-	return <Layout></Layout>;
+	return <Jobs></Jobs>;
 }
 
 export default LayoutScreen;
