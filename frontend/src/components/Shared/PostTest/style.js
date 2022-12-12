@@ -64,8 +64,9 @@ export const Background = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 44vw;
-	height: 34vh;
+	width: 40vw;
+	height: 30vh;
+	/* background-color: orange; */
 `;
 
 export const Background2 = styled.div`
@@ -90,15 +91,16 @@ export const ModalWrapper2 = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-	width: 40vw;
-	height: 30vh;
+	width: 50vw;
+	height: 25vh;
 	position: relative;
 	box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
 	/* border: 1px solid black; */
 	background: ${({ theme }) => theme.bg};
+	/* background-color: red; */
 	color: ${({ theme }) => theme.text};
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 0.5fr 1fr;
 	/* position: absolute; */
 	z-index: 5;
 	border-radius: 10px;
@@ -117,17 +119,17 @@ export const ModalContent = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	line-height: 1.8;
+	line-height: 1.5;
 	color: ${({ theme }) => theme.text};
 `;
 
 export const Button = styled.button`
-	padding: 15px 24px;
+	padding: 10px 15px;
 	background: ${({ theme }) => theme.buttons};
-	color: black;
+	color: white;
 	font-weight: bold;
 	border: none;
-	border-radius: 20px;
+	border-radius: 5px;
 	cursor: pointer;
 	transition: all 0.3s ease;
 
@@ -142,12 +144,13 @@ export const Price = styled.h2`
 `;
 
 export const Details = styled.p`
-	margin-bottom: 1rem;
+	/* margin-top: 1rem; */
 	color: ${({ theme }) => theme.text};
 	text-align: center;
 `;
 
 export const Title = styled.h1`
+	margin-top: 1rem;
 	font-size: 1.5rem;
 	font-weight: bold;
 	color: ${({ theme }) => theme.text};
@@ -171,14 +174,14 @@ export const User = styled.div`
 `;
 
 export const UserName = styled.h3`
-	font-size: 1rem;
+	font-size: 0.9rem;
 	margin-left: 10px;
 	color: ${({ theme }) => theme.text};
 `;
 
 export const UserImage = styled.img`
-	width: 45px;
-	height: 45px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	object-fit: cover;
 	cursor: pointer;
@@ -189,8 +192,8 @@ export const Order = styled.div`
 	justify-content: space-evenly;
 	align-items: center;
 	position: relative;
-	padding: 11px 20px 11px 20px;
-	width: 100%;
+	/* padding: 11px 20px 11px 20px; */
+	width: 30%;
 `;
 
 export const Peoples = styled.div``;
