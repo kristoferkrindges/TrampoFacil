@@ -7,6 +7,9 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "nodemon ./index.mjs localhost 5000"
 	},
+	"engines": {
+		"node": "16.15.0"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/kristoferkrindges/TrampoFacil.git"
