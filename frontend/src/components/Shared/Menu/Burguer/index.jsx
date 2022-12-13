@@ -24,11 +24,17 @@ export default function Burguer({ isOpen, toggle }) {
 					<SidebarLink to="/" onClick={toggle}>
 						Home
 					</SidebarLink>
-					<SidebarLink to="/" onClick={toggle}>
+					<SidebarLink to="/createdpost" onClick={toggle}>
 						Publicar
 					</SidebarLink>
 					<SidebarLink to="/login" onClick={toggle}>
 						Perfil
+					</SidebarLink>
+					<SidebarLink to="/layout" onClick={toggle}>
+						Vagas
+					</SidebarLink>
+					<SidebarLink to="/myposts" onClick={toggle}>
+						Postagens
 					</SidebarLink>
 					<SidebarLink to="/" onClick={toggle}>
 						<IoCart
