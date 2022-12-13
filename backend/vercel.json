@@ -9,14 +9,6 @@
 		{
 			"src": "/(.*)",
 			"dest": "/"
-		},
-		{
-			"src": "/(.*)",
-			"dest": "src/routes/PostRoutes.mjs"
-		},
-		{
-			"src": "/(.*)",
-			"dest": "src/routes/UserRoutes.mjs"
 		}
 	]
 }
