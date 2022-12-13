@@ -54,17 +54,33 @@ export default function Post({
 	const [route, setRoute] = useState("");
 	// const [emp, setEmp] = useState(0);
 	const { userContext, authenticated } = useContext(Context);
+	const [sign, setSign] = useState();
+	const [counter, setCounter] = useState(employees.length);
+	console.log(counter);
 	useEffect(() => {
 		if (!type) {
 			fetchUser(userId);
 			// setEmp(employees.length);
 		}
 	}, []);
+
+	useEffect(() => {
+		controllerButton();
+	}, []);
+
+	function controllerCount() {
+		setCounter(counter + 1);
+	}
+
+	async function controllerButton() {
+		await userContext;
+		setSign(employees.includes(userContext._id));
+	}
+
 	async function fetchUser(userId) {
 		const response = await UserService.getId(userId);
 		setUser(response.data.user);
 	}
-	console.log(employees);
 	async function signU(x) {
 		console.log(authenticated);
 		if (!authenticated) {
@@ -84,6 +100,8 @@ export default function Post({
 			const response = await PostService.signUp(x, {
 				user: userContext._id,
 			});
+			setSign(true);
+			controllerCount();
 			toast.success("The user was push with successfully!");
 			// setUser(user.employees.push(userContext._id));
 			// employees.push(userContext._id);
@@ -151,7 +169,7 @@ export default function Post({
 						<ModalContent>
 							<Icons>
 								<IoPeople></IoPeople>
-								{employees.length}
+								{counter}
 								{/* {emp} */}
 							</Icons>
 							<User>
@@ -185,9 +203,7 @@ export default function Post({
 									}}
 								>
 									<IoAdd></IoAdd>
-									{employees.includes(userContext._id)
-										? "Inscrito"
-										: "Inscrever-se"}
+									{sign ? "Inscrito" : "Inscrever-se"}
 								</Button>
 							</Order>
 						</ModalContent>
