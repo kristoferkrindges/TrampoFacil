@@ -1,0 +1,22 @@
+{
+	"version": 2,
+	"public": true,
+	"builds": {
+		"src": "./index.mjs",
+		"use": "@vercel/node"
+	},
+	"routes": [
+		{
+			"src": "/(.*)",
+			"dest": "/"
+		},
+		{
+			"src": "/(.*)",
+			"dest": "src/routes/PostRoutes.mjs"
+		},
+		{
+			"src": "/(.*)",
+			"dest": "src/routes/UserRoutes.mjs"
+		}
+	]
+}
